@@ -1,0 +1,38 @@
+type Query{
+    getUsers:[User!]!
+    getRoles:[Role!]!
+    getSessions:[Session!]!
+    getSessionDataWithoutUser(sessionId: Int!):Session
+    getSessionDataWithUserAndRoles(sessionId:Int!):Session
+}
+
+type Mutation{
+    createRole(roleName:String!): Role!
+    editRole(id: Int!,roleName:String!): Role!
+    deleteRole(id:Int!): Role!
+    editUserInformation(userId: Int!, email:String!,name:String!,qualification:String!,jobPeriod:Int!,roleId:Int!): User!
+    createSessionWithUser(email:String!,name:String!,qualification:String!,jobPeriod:Int!,roleId:Int!):Session!
+    deleteSession(sessionId:Int!): String!
+}
+
+type Role{
+  id: Int!
+  roleName: String!
+}
+
+type User{
+  id: Int!
+  email: String! 
+  name: String!
+  qualification: String!
+  jobPeriod: Int! 
+  roleId:Int!
+  role: Role!
+}
+
+type Session{
+  sessionId:Int!
+  token: String!
+  userId: Int!
+  user:User!
+}

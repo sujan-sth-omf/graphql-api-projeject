@@ -1,6 +1,6 @@
 import { ApolloServer } from 'apollo-server'
 import {gql} from 'apollo-server'
-import apiResolvers from "./apiResolvers";
+import apiResolvers from "./apiResolver";
 
 const fs=require('fs');
 

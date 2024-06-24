@@ -2,37 +2,35 @@ type Query{
     getUsers:[User!]!
     getRoles:[Role!]!
     getSessions:[Session!]!
-    getSessionDataWithoutUser(sessionId: Int!):Session
-    getSessionDataWithUserAndRoles(sessionId:Int!):Session
+    getSessionDataWithoutUser(sessionId: ID!):Session
+    getSessionDataWithUserAndRoles(sessionId:ID!):Session
 }
 
 type Mutation{
     createRole(roleName:String!): Role!
-    editRole(id: Int!,roleName:String!): Role!
-    deleteRole(id:Int!): Role!
-    editUserInformation(userId: Int!, email:String!,name:String!,qualification:String!,jobPeriod:Int!,roleId:Int!): User!
+    editRole(id: ID!,roleName:String!): Role!
+    deleteRole(id:ID!): String!
+    editUserInformation(id:ID!, email:String,name:String,qualification:String,jobPeriod:Int,roleId:Int): User!
     createSessionWithUser(email:String!,name:String!,qualification:String!,jobPeriod:Int!,roleId:Int!):Session!
-    deleteSession(sessionId:Int!): String!
+    deleteSession(sessionId:ID!): String!
 }
 
 type Role{
-  id: Int!
+  id: ID!
   roleName: String!
 }
 
 type User{
-  id: Int!
+  id: ID!
   email: String! 
   name: String!
   qualification: String!
   jobPeriod: Int! 
-  roleId:Int!
   role: Role!
 }
 
 type Session{
-  sessionId:Int!
+  sessionId:ID!
   token: String!
-  userId: Int!
   user:User!
 }
